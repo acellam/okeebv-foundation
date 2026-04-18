@@ -1,0 +1,17 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 188.166.36.143
+          username: deploy
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: /var/www/okeebv/deploy.sh
