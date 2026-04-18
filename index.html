@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Okee Barmich Valerian Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.25;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --green: #1a4731;
+      --gold: #c9922a;
+      --cream: #f9f5ee;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --muted: #6b7280;
+    }
+
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      width: 100%;
+      height: 3px;
+      background: var(--gold);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 3px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.08);
+      z-index: 999;
+      transition: box-shadow 0.3s;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .btn-donate {
+      background: var(--gold);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-links .btn-donate:hover {
+      background: #b07a1e;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--dark);
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      padding: 16px 24px 24px;
+      gap: 4px;
+      border-top: 1px solid #f0ece4;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--dark);
+      padding: 10px 0;
+      border-bottom: 1px solid #f0ece4;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .mobile-menu .btn-donate {
+      background: var(--gold);
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 4px;
+      text-align: center;
+      margin-top: 8px;
+      border-bottom: none;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 96px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-subheading {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: var(--green);
+      padding-top: calc(71px + 80px);
+      padding-bottom: 80px;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-heading {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      color: #fff;
+      margin-bottom: 24px;
+      line-height: 1.15;
+    }
+
+    .hero-heading em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-subtext {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #b07a1e;
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      margin-top: 24px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo {
+      width: min(380px, 100%);
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 5px solid var(--gold);
+      box-shadow: 0 0 0 12px rgba(201,146,42,0.18), 0 24px 64px rgba(0,0,0,0.4);
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--cream); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .two-col p {
+      font-size: 1.03rem;
+      color: #3a3a3a;
+      line-height: 1.85;
+    }
+
+    .photo-card {
+      position: relative;
+    }
+
+    .photo-card img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+    }
+
+    .photo-caption {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ===== BIOGRAPHY ===== */
+    #biography { background: var(--white); }
+
+    .bio-text p {
+      font-size: 1rem;
+      color: #3a3a3a;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    /* ===== MISSION ===== */
+    #mission { background: var(--cream); }
+
+    .mission-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .mission-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.13);
+    }
+
+    .mission-icon {
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+    }
+
+    .mission-card h3 {
+      font-size: 1.25rem;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .mission-card p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ===== PROGRAMS ===== */
+    #programs { background: var(--white); }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .program-card {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 32px 28px;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    .program-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .program-card h3 {
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .program-card p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ===== GALLERY ===== */
+    #gallery { background: var(--cream); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(201,146,42,0.82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      padding: 16px;
+    }
+
+    .gallery-overlay span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: #fff;
+      text-align: center;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 860px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .lightbox-content img {
+      max-height: 75vh;
+      width: auto;
+      max-width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      margin: 0 auto;
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ===== ACHOLI TRIBUTE ===== */
+    #acholi {
+      background: var(--green);
+      text-align: center;
+      padding: 96px 24px;
+    }
+
+    .acholi-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .acholi-line {
+      height: 2px;
+      background: var(--gold);
+      margin: 32px auto;
+      max-width: 400px;
+      opacity: 0.7;
+    }
+
+    .acholi-heading {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .acholi-body {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--gold);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .acholi-translation {
+      font-size: 0.9rem;
+      color: rgba(249,245,238,0.75);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* ===== DONATE ===== */
+    #donate { background: var(--white); }
+
+    .donate-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--gold);
+    }
+
+    .donate-card p {
+      font-size: 1rem;
+      color: #3a3a3a;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .donate-email {
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 28px !important;
+    }
+
+    .donate-card .btn-primary {
+      font-size: 1rem;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.4rem;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact-detail-item {
+      font-size: 0.96rem;
+      color: #3a3a3a;
+    }
+
+    .contact-detail-item strong {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .contact-detail-item a { color: var(--green); font-weight: 500; }
+    .contact-detail-item a:hover { color: var(--gold); }
+
+    .contact-memorial {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid #e5dfd3;
+    }
+
+    .contact-form {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 36px 32px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e0dbd0;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.96rem;
+      color: var(--dark);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,146,42,0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-submit:hover {
+      background: #133623;
+      transform: translateY(-1px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--green);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .footer-name {
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .footer-memorial {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(249,245,238,0.65);
+    }
+
+    .footer-site {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo-wrap { order: -1; }
+      .hero-photo { width: min(260px, 70vw); }
+
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .mission-cards { grid-template-columns: 1fr; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 72px 20px; }
+      .donate-card { padding: 32px 24px; }
+      .contact-form { padding: 28px 20px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    }
+
+    @media (max-width: 400px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">OBVF</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#biography">Biography</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#donate" class="btn-donate">Donate</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#biography" class="mobile-link">Biography</a>
+    <a href="#mission" class="mobile-link">Mission</a>
+    <a href="#programs" class="mobile-link">Programs</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#donate" class="btn-donate mobile-link">Donate</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-label">Okee Barmich Valerian Foundation</div>
+      <h1 class="hero-heading">A Legacy of Service, Education &amp; <em>Integrity</em></h1>
+      <p class="hero-subtext">Honouring five decades of dedication to Northern Uganda — Padibe, Lamwo District</p>
+      <a href="#biography" class="btn-primary">Learn His Story</a>
+      <p class="hero-meta">Est. 2026 &nbsp;·&nbsp; In Memoriam</p>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="images/okee-portrait.jpg" alt="Okee Barmich Valerian" class="hero-photo" />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-heading">About the Foundation</h2>
+    <div class="two-col" style="margin-top: 40px;">
+      <div>
+        <p>The Okee Barmich Valerian Foundation was established in 2026 by Acellam Guy in loving memory of his father, Okee Barmich Valerian (1948–2026). Mr. Okee dedicated his life to education, public service, and community development in Northern Uganda. Through this foundation, his son carries forward that legacy — providing scholarships, supporting community health, and promoting transparent governance in Lamwo District and beyond. The foundation operates from Padibe, the community Mr. Okee served his entire life.</p>
+      </div>
+      <div class="photo-card">
+        <img src="images/okee-museveni-medal.jpg" alt="Okee Barmich Valerian receiving Presidential Medal" />
+        <p class="photo-caption">Receiving a Presidential Medal for Parliamentary Service — September 2016</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: BIOGRAPHY -->
+<section id="biography">
+  <div class="container">
+    <div class="section-label">His Life &amp; Legacy</div>
+    <h2 class="section-heading">Biography</h2>
+    <div class="two-col" style="margin-top: 40px; align-items: start;">
+      <div class="bio-text">
+        <p>Okee Barmich Valerian was a distinguished Ugandan educator, public servant, and financial administrator with a career spanning over five decades. Throughout his professional journey, he demonstrated an unwavering commitment to academic excellence, transparent governance, and community development, particularly within the Lamwo and Kitgum districts.</p>
+        <p>Born and raised in Padibe, Lamwo District, Mr. Okee built his foundational expertise in Economics and Accounting at Makerere University, earning a B.A. (Hons) in 1971, followed by a Post-Graduate Diploma in Education in 1973.</p>
+        <p>He served as a Graduate Teacher for the Ministry of Education and Sports for nearly twenty years, becoming known for his ability to mentor students toward exceptional success in Economics and Commerce. His leadership led him to senior roles including Head of Department and Head Teacher.</p>
+        <p>In 1996, Mr. Okee was elected Member of Parliament for Lamwo Constituency, serving on the Committee on Finance, Planning and Economic Development. He personally funded the construction of a health clinic in Pader Parish and mobilized resources for local residents.</p>
+        <p>In the late 1990s, he traveled to London for the Kacoke Madit peace conferences, working to find peaceful resolutions to the civil strife in Northern Uganda caused by the LRA.</p>
+        <p>With a background in accounting and internal auditing refined at Vitafoam (U) Ltd., he became a vital figure in local government accountability as Chairman of the Public Accounts Committee for Lamwo District.</p>
+        <p>In 2016, President Yoweri Museveni awarded him a medal for his enormous contribution to Parliamentary Service and the Nation.</p>
+        <p>Until his passing on 13th April 2026, he served as Chairman of the Board of Governors at Lokung Senior Secondary School, Director of Finance and Planning at St. Francis Sunflower Press, Chairman of CARITAS at Padibe Catholic Parish, and member of the Lamwo Farmers' Cooperative Society.</p>
+        <p>He is survived by his family and a community that will forever bear the mark of his integrity and service.</p>
+      </div>
+      <div class="photo-card">
+        <img src="images/okee-parliament.jpg" alt="Okee Barmich Valerian addressing Parliament" />
+        <p class="photo-caption">Addressing Parliament, Kampala</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: MISSION -->
+<section id="mission">
+  <div class="container">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-heading">Our Mission</h2>
+    <p class="section-subheading">Carrying forward a legacy of service</p>
+    <div class="mission-cards">
+      <div class="mission-card">
+        <div class="mission-icon">🎓</div>
+        <h3>Education</h3>
+        <p>Providing scholarships and educational support to students in Lamwo District and Northern Uganda, carrying forward Mr. Okee's 20-year legacy as an educator.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon">🏥</div>
+        <h3>Community Development</h3>
+        <p>Investing in community infrastructure and healthcare access, inspired by Mr. Okee's personal construction of a health clinic for Pader Parish.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-icon">⚖️</div>
+        <h3>Governance &amp; Accountability</h3>
+        <p>Promoting transparent governance and civic education in Northern Uganda, honouring Mr. Okee's distinguished service on the Public Accounts Committee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-heading">Our Programs</h2>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-badge">Coming Soon</div>
+        <h3>Okee Barmich Scholarship Fund</h3>
+        <p>Annual scholarships for students in Lamwo District pursuing Economics, Accounting, or Education. Applications open 2026.</p>
+      </div>
+      <div class="program-card">
+        <div class="program-badge">Coming Soon</div>
+        <h3>Community Health Initiative</h3>
+        <p>Continuing Mr. Okee's legacy of healthcare access in Pader Parish and surrounding communities.</p>
+      </div>
+      <div class="program-card">
+        <div class="program-badge">Coming Soon</div>
+        <h3>Civic Leadership Program</h3>
+        <p>Training young leaders in financial accountability and public service in Northern Uganda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-label">Remembering Him</div>
+    <h2 class="section-heading">Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-src="images/okee-portrait.jpg" data-caption="Okee Barmich Valerian">
+        <img src="images/okee-portrait.jpg" alt="Okee Barmich Valerian" />
+        <div class="gallery-overlay"><span>Okee Barmich Valerian</span></div>
+      </div>
+      <div class="gallery-item" data-src="images/okee-museveni-medal.jpg" data-caption="Presidential Medal — September 2016">
+        <img src="images/okee-museveni-medal.jpg" alt="Presidential Medal" />
+        <div class="gallery-overlay"><span>Presidential Medal — September 2016</span></div>
+      </div>
+      <div class="gallery-item" data-src="images/okee-parliament.jpg" data-caption="Addressing Parliament">
+        <img src="images/okee-parliament.jpg" alt="Addressing Parliament" />
+        <div class="gallery-overlay"><span>Addressing Parliament</span></div>
+      </div>
+      <div class="gallery-item" data-src="images/okee-family-wedding.jpg" data-caption="Family — The Foundation of His Life">
+        <img src="images/okee-family-wedding.jpg" alt="Family Wedding" />
+        <div class="gallery-overlay"><span>Family — The Foundation of His Life</span></div>
+      </div>
+      <div class="gallery-item" data-src="images/okee-basket.jpg" data-caption="Traditional Craft, Padibe">
+        <img src="images/okee-basket.jpg" alt="Traditional Woven Basket" />
+        <div class="gallery-overlay"><span>Traditional Craft, Padibe</span></div>
+      </div>
+      <div class="gallery-item" data-src="images/okee-marriage-box.jpg" data-caption="Christian Marriage — A Great Gift From God">
+        <img src="images/okee-marriage-box.jpg" alt="Carved Wooden Marriage Box" />
+        <div class="gallery-overlay"><span>Christian Marriage — A Great Gift From God</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightbox-img" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<!-- SECTION 7: ACHOLI TRIBUTE -->
+<section id="acholi">
+  <div class="acholi-inner">
+    <div class="acholi-line"></div>
+    <h2 class="acholi-heading">Wapo Okee Barmich Valerian</h2>
+    <p class="acholi-body">
+      Okee Barmich Valerian obedo ladit ma ber ki con — lajwero pa lwak, lapwony ma kigeno, ki ladit ma rwot obedo kwede. Obedo lapwony pi mwaka pyeraryo, lacam pa paco me Lamwo, ki ladit pa kuca me yub-yub pa lobo. Warwatte kwede, waminye, waparo wiye pi kare weng.
+    </p>
+    <p class="acholi-translation">(Translation: We honour Okee Barmich Valerian — servant of the people, trusted teacher, and leader of integrity. He taught for twenty years, represented Lamwo in Parliament, and led community development. We remember him always.)</p>
+    <div class="acholi-line"></div>
+  </div>
+</section>
+
+<!-- SECTION 8: DONATE -->
+<section id="donate">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div class="section-label">Give Back</div>
+      <h2 class="section-heading">Support the Foundation</h2>
+      <p class="section-subheading">Your contribution helps us carry forward Mr. Okee's legacy of education and community service in Northern Uganda.</p>
+    </div>
+    <div class="donate-card">
+      <p>To make a donation or enquire about supporting the foundation, please get in touch. Bank transfer and mobile money details available on request.</p>
+      <p class="donate-email">acellam.guy@gmail.com</p>
+      <a href="mailto:acellam.guy@gmail.com" class="btn-primary">Get in Touch to Donate</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Reach Out</div>
+    <h2 class="section-heading">Contact Us</h2>
+    <div class="contact-grid" style="margin-top: 48px;">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <strong>Foundation Director</strong>
+            Acellam Guy
+          </div>
+          <div class="contact-detail-item">
+            <strong>Email</strong>
+            <a href="mailto:acellam.guy@gmail.com">acellam.guy@gmail.com</a>
+          </div>
+          <div class="contact-detail-item">
+            <strong>Location</strong>
+            Padibe, Lamwo District, Uganda
+          </div>
+        </div>
+        <p class="contact-memorial">In memory of Okee Barmich Valerian (1948–2026)</p>
+      </div>
+      <div class="contact-form">
+        <form action="mailto:acellam.guy@gmail.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="Name" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="Email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" placeholder="Your message…" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">OBVF</div>
+    <p class="footer-name">Okee Barmich Valerian Foundation &copy; 2026</p>
+    <p class="footer-memorial">Established in loving memory of Okee Barmich Valerian (1948 – 13th April 2026)</p>
+    <p class="footer-site">okeebv.org &nbsp;·&nbsp; Padibe, Lamwo District, Uganda</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.dataset.src;
+      lightboxImg.alt = item.dataset.caption;
+      lightboxCaption.textContent = item.dataset.caption;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Smooth scroll polyfill for older browsers (already handled by CSS)
+  // Navbar shadow on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      navbar.style.boxShadow = '0 2px 24px rgba(0,0,0,0.13)';
+    } else {
+      navbar.style.boxShadow = '0 1px 16px rgba(0,0,0,0.08)';
+    }
+  });
+</script>
+</body>
+</html>
