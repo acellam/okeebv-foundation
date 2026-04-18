@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Okee Barmich Valerian Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f9f5ee; color: #1a1a1a; min-height: 100vh; }
+
+    :root {
+      --green: #1a4731;
+      --gold: #c9922a;
+      --cream: #f9f5ee;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --muted: #6b7280;
+      --danger: #c0392b;
+    }
+
+    /* ===== LOGIN ===== */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--green);
+      padding: 24px;
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+      border-top: 4px solid var(--gold);
+    }
+
+    .login-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e0dbd0;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.96rem;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,146,42,0.12);
+    }
+
+    .login-error {
+      color: var(--danger);
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+      min-height: 20px;
+    }
+
+    .btn-login {
+      width: 100%;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-login:hover {
+      background: #133623;
+      transform: translateY(-1px);
+    }
+
+    /* ===== DASHBOARD ===== */
+    #dashboard-screen {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .admin-nav {
+      background: var(--green);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .admin-nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .admin-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .admin-nav-right span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .btn-logout {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-logout:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .admin-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+
+    .admin-header {
+      margin-bottom: 32px;
+    }
+
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+
+    .admin-header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .table-section {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .table-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--green);
+    }
+
+    .btn-export {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-export:hover { background: #b07a1e; }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    thead th {
+      background: var(--cream);
+      color: var(--green);
+      font-weight: 600;
+      text-align: left;
+      padding: 12px 14px;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 2px solid #e5dfd3;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f0ece4;
+      transition: background 0.15s;
+    }
+
+    tbody tr:hover { background: #faf7f2; }
+
+    tbody td {
+      padding: 12px 14px;
+      color: #3a3a3a;
+      vertical-align: middle;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-completed { background: #d1fae5; color: #065f46; }
+    .status-failed { background: #fee2e2; color: #991b1b; }
+
+    .no-data {
+      text-align: center;
+      padding: 48px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr; }
+      .admin-body { padding: 24px 16px; }
+      .admin-nav { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">OBVF</div>
+    <p class="login-subtitle">Admin Dashboard — Donations</p>
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" placeholder="Username" autocomplete="username" required />
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+      </div>
+      <p class="login-error" id="login-error"></p>
+      <button type="submit" class="btn-login">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD SCREEN -->
+<div id="dashboard-screen">
+  <nav class="admin-nav">
+    <div class="admin-nav-logo">OBVF Admin</div>
+    <div class="admin-nav-right">
+      <span>Donations Dashboard</span>
+      <button class="btn-logout" id="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="admin-body">
+    <div class="admin-header">
+      <h1>Donations Overview</h1>
+      <p>All donations recorded via the foundation website.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Donations</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Raised (UGX)</div>
+        <div class="stat-value" id="stat-raised">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest Donation</div>
+        <div class="stat-value" id="stat-latest">—</div>
+      </div>
+    </div>
+
+    <div class="table-section">
+      <div class="table-header">
+        <h2>All Donations</h2>
+        <button class="btn-export" id="export-btn">Export CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table id="donations-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Donor</th>
+              <th>Email</th>
+              <th>Amount (UGX)</th>
+              <th>Method</th>
+              <th>Reference</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="donations-tbody">
+            <tr><td colspan="7" class="no-data">No donations yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Check session
+  function isLoggedIn() {
+    return sessionStorage.getItem('obvf_admin_auth') === 'true';
+  }
+
+  function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard-screen').style.display = 'block';
+    loadDonations();
+  }
+
+  function showLogin() {
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('dashboard-screen').style.display = 'none';
+  }
+
+  // Init
+  if (isLoggedIn()) {
+    showDashboard();
+  }
+
+  // Login form
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+    const errEl = document.getElementById('login-error');
+
+    if (username === 'acellam.guy' && password === 'OkeeBV@2026!') {
+      sessionStorage.setItem('obvf_admin_auth', 'true');
+      errEl.textContent = '';
+      showDashboard();
+    } else {
+      errEl.textContent = 'Invalid username or password.';
+    }
+  });
+
+  // Logout
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem('obvf_admin_auth');
+    showLogin();
+  });
+
+  // Load donations
+  function loadDonations() {
+    const donations = JSON.parse(localStorage.getItem('obvf_donations') || '[]');
+    const tbody = document.getElementById('donations-tbody');
+
+    // Stats
+    document.getElementById('stat-total').textContent = donations.length;
+    const totalRaised = donations.reduce((sum, d) => sum + (parseInt(d.amount) || 0), 0);
+    document.getElementById('stat-raised').textContent = totalRaised.toLocaleString();
+
+    if (donations.length > 0) {
+      const sorted = [...donations].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const latest = new Date(sorted[0].timestamp);
+      document.getElementById('stat-latest').textContent = latest.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    if (donations.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="no-data">No donations yet.</td></tr>';
+      return;
+    }
+
+    const sorted = [...donations].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    tbody.innerHTML = sorted.map(d => {
+      const date = new Date(d.timestamp).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      const statusClass = d.status === 'completed' ? 'status-completed' : d.status === 'failed' ? 'status-failed' : 'status-pending';
+      const method = d.method === 'MOBILE_MONEY' ? 'Mobile Money' : 'Card';
+      const ref = (d.merchant_reference || d.id || '').substring(0, 8) + '…';
+      return `<tr>
+        <td>${date}</td>
+        <td>${escHtml(d.name || '—')}</td>
+        <td>${escHtml(d.email || '—')}</td>
+        <td>${parseInt(d.amount || 0).toLocaleString()}</td>
+        <td>${method}</td>
+        <td><code style="font-size:0.8rem">${escHtml(ref)}</code></td>
+        <td><span class="status-badge ${statusClass}">${d.status || 'pending'}</span></td>
+      </tr>`;
+    }).join('');
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Export CSV
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const donations = JSON.parse(localStorage.getItem('obvf_donations') || '[]');
+    if (donations.length === 0) { alert('No donations to export.'); return; }
+
+    const headers = ['Date', 'Donor', 'Email', 'Amount (UGX)', 'Method', 'Reference', 'Status'];
+    const rows = donations.map(d => [
+      new Date(d.timestamp).toISOString(),
+      d.name || '',
+      d.email || '',
+      d.amount || 0,
+      d.method || '',
+      d.merchant_reference || d.id || '',
+      d.status || 'pending'
+    ]);
+
+    const csv = [headers, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `obvf-donations-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+</script>
+</body>
+</html>

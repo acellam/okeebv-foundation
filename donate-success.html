@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Okee Barmich Valerian Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #ffffff; line-height: 1.7; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.25; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --green: #1a4731;
+      --gold: #c9922a;
+      --cream: #f9f5ee;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --muted: #6b7280;
+    }
+
+    .top-bar {
+      width: 100%;
+      height: 3px;
+      background: var(--gold);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      position: fixed;
+      top: 3px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.08);
+      z-index: 999;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .btn-donate {
+      background: var(--gold);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-links .btn-donate:hover {
+      background: #b07a1e;
+      color: #fff;
+    }
+
+    /* Hero */
+    .success-hero {
+      background: var(--green);
+      padding: calc(71px + 100px) 24px 100px;
+      text-align: center;
+    }
+
+    .success-hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 24px;
+    }
+
+    .success-heading {
+      font-size: clamp(2.2rem, 4.5vw, 3rem);
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .success-subtext {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .success-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(249,245,238,0.7);
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(201,146,42,0.3);
+    }
+
+    .gold-line {
+      height: 2px;
+      background: var(--gold);
+      max-width: 200px;
+      margin: 32px auto;
+      opacity: 0.6;
+    }
+
+    .btn-return {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 36px;
+    }
+
+    .btn-return:hover {
+      background: #b07a1e;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: var(--green);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .footer-name {
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .footer-memorial {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(249,245,238,0.65);
+    }
+
+    .footer-site {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">OBVF</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#biography">Biography</a></li>
+      <li><a href="index.html#mission">Mission</a></li>
+      <li><a href="index.html#programs">Programs</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#donate" class="btn-donate">Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="success-hero">
+  <div class="success-hero-inner">
+    <div class="success-icon">🙏</div>
+    <h1 class="success-heading">Thank You for Your Generosity</h1>
+    <p class="success-subtext">Your donation to the Okee Barmich Valerian Foundation means more than words can express. Every contribution helps carry forward the legacy of a man who gave everything to his community — through education, service, and unwavering integrity.</p>
+    <p class="success-subtext">Together, we honour his memory by investing in the next generation of Northern Uganda's leaders, scholars, and changemakers.</p>
+    <div class="gold-line"></div>
+    <p class="success-quote">"A person is remembered not by the years they lived, but by the lives they changed."</p>
+    <a href="index.html" class="btn-return">Return to Home</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">OBVF</div>
+    <p class="footer-name">Okee Barmich Valerian Foundation &copy; 2026</p>
+    <p class="footer-memorial">Established in loving memory of Okee Barmich Valerian (1946 – 13th April 2026)</p>
+    <p class="footer-site">okeebv.org &nbsp;·&nbsp; Lokung, Lamwo District, Uganda</p>
+  </div>
+</footer>
+
+</body>
+</html>
